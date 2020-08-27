@@ -2,7 +2,7 @@
 Source: http://books.toscrape.com/
 It is a sandbox for web scraping.
 
-The script gets and prints in console the data from the the bookstore catalogue pages
+The script gets and prints to console the data from the bookstore catalogue pages
 (http://books.toscrape.com/catalogue/)
 '''
 
@@ -20,7 +20,7 @@ RATINGS_BY_CLASSNAME: Dict = {'One': '1',
                               'Four': '4',
                               'Five': '5'}
                             
-print('Title\tPrice (£)\tIn stock\tRating (1-5)\t Cover image URL')
+print('Title\tPrice (£)\tIn stock\tRating (1-5)\tCover image URL')
 
 n_products: int = 0
 page: int = 1
