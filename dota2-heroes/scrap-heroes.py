@@ -1,6 +1,6 @@
 # Source: http://www.dota2.com/heroes/
 
-from typing import Dict, List
+from typing import List
 import requests
 from bs4 import BeautifulSoup
 
