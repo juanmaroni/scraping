@@ -1,14 +1,16 @@
 # Source: http://www.dota2.com/heroes/
+# Scrap some data from the source and put it on a CSV file
 
 from typing import List
 import requests
 from bs4 import BeautifulSoup
+import csv
 
 Response = requests.models.Response
 
 # I could create a list with the links/names of the heroes to form their URLs
 # but I will get them by scraping, so I don't have to update if Valve adds
-# a new hero (SoonTM)
+# a new hero (Soon TM)
 
 all_heroes_url: str = 'http://www.dota2.com/heroes/'
 resp: Response = requests.get(all_heroes_url)
@@ -25,7 +27,8 @@ if resp.status_code == 200:
         'int_gain', 'agility', 'agi_gain', 'strength', 'str_gain', 'min_base_damage', 'max_base_damage', 'base_speed',
         'armor', 'day_vision', 'night_vision', 'bio', 'lst_abilities']
 
-    print(field_names)
+    f = open('scrap-heroes.csv', 'w')
+    f.write(';'.join(field_names) + '\n')
     
     for hero in hero_links:
         resp = requests.get(hero)
@@ -43,7 +46,7 @@ if resp.status_code == 200:
             # Attack type (range or meelee) and roles
             attackType_and_roles: List = hero_page.find('p', id='heroBioRoles').text.split(' - ')
             attack_type: str = attackType_and_roles[0]
-            lst_roles: List = attackType_and_roles[1:]
+            lst_roles: str = ', '.join(attackType_and_roles[1:])
             
             # In-game portrait URL
             portrait_ingame_url: str = hero_page.find('img', id='heroPrimaryPortraitImg')['src']
@@ -85,11 +88,14 @@ if resp.status_code == 200:
             for ab in bs_abilities:
                 lst_abilities.append(ab.h2.text)
 
-            fields: List = [name, portrait_pic_url, attack_type, lst_roles, portrait_ingame_url, intelligence,
-                int_gain, agility, agi_gain, strength, str_gain, min_base_damage, max_base_damage, base_speed,
-                armor, day_vision, night_vision, bio, lst_abilities]
+            abilities: str = ', '.join(lst_abilities)
 
-            print(fields)
-            break
+            fields_data: List = [name, portrait_pic_url, attack_type, lst_roles, portrait_ingame_url, intelligence,
+                int_gain, agility, agi_gain, strength, str_gain, min_base_damage, max_base_damage, base_speed,
+                armor, day_vision, night_vision, bio, abilities]
+
+            f.write(';'.join(fields_data) + '\n')
+    
+    f.close()
 else:
     exit()
