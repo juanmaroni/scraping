@@ -5,6 +5,7 @@ from typing import List
 import requests
 from bs4 import BeautifulSoup
 import csv
+import time
 
 Response = requests.models.Response
 
@@ -95,6 +96,10 @@ if resp.status_code == 200:
                 armor, day_vision, night_vision, bio, abilities]
 
             f.write(';'.join(fields_data) + '\n')
+            
+            # Don't abuse, pause between heroes
+            # It will take more time, but it helps to prevent being blocked
+            time.sleep(1)
     
     f.close()
 else:
