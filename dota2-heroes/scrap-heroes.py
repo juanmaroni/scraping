@@ -28,7 +28,7 @@ if resp.status_code == 200:
         'int_gain', 'agility', 'agi_gain', 'strength', 'str_gain', 'min_base_damage', 'max_base_damage', 'base_speed',
         'armor', 'day_vision', 'night_vision', 'bio', 'lst_abilities']
 
-    f = open('dota2-heroes/scrap-heroes.csv', 'w')
+    f = open('dota2-heroes/data-heroes.csv', 'w')
     f.write(';'.join(field_names) + '\n')
     
     for hero in hero_links:
