@@ -1,6 +1,7 @@
 # Source: http://www.dota2.com/heroes/
 # Scrap some data from the source and put it on a CSV file
 
+import os
 from typing import List
 import requests
 from bs4 import BeautifulSoup
@@ -12,9 +13,11 @@ Response = requests.models.Response
 # I could create a list with the links/names of the heroes to form their URLs
 # but I will get them by scraping, so I don't have to update if Valve adds
 # a new hero (Soon TM)
-
 all_heroes_url: str = 'http://www.dota2.com/heroes/'
 resp: Response = requests.get(all_heroes_url)
+
+# Using os.path to get complete filepath
+csv_filepath: str = f'{os.path.dirname(__file__)}/data-heroes.csv'
 
 if resp.status_code == 200:
     hero_links: List = []
@@ -28,7 +31,7 @@ if resp.status_code == 200:
         'int_gain', 'agility', 'agi_gain', 'strength', 'str_gain', 'min_base_damage', 'max_base_damage', 'base_speed',
         'armor', 'day_vision', 'night_vision', 'bio', 'lst_abilities']
 
-    f = open('dota2-heroes/data-heroes.csv', 'w')
+    f = open(csv_filepath, 'w')
     f.write('|'.join(field_names) + '\n')
     
     for hero in hero_links:
