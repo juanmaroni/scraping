@@ -17,7 +17,7 @@ all_heroes_url: str = 'http://www.dota2.com/heroes/'
 resp: Response = requests.get(all_heroes_url)
 
 # Using os.path to get complete filepath
-csv_filepath: str = f'{os.path.dirname(__file__)}/data-heroes.csv'
+csv_filepath: str = f'{os.path.dirname(__file__)}/data_heroes.csv'
 
 if resp.status_code == 200:
     hero_links: List = []
