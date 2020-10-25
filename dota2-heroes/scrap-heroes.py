@@ -29,7 +29,7 @@ if resp.status_code == 200:
         'armor', 'day_vision', 'night_vision', 'bio', 'lst_abilities']
 
     f = open('dota2-heroes/data-heroes.csv', 'w')
-    f.write(';'.join(field_names) + '\n')
+    f.write('|'.join(field_names) + '\n')
     
     for hero in hero_links:
         resp = requests.get(hero)
@@ -95,7 +95,7 @@ if resp.status_code == 200:
                 int_gain, agility, agi_gain, strength, str_gain, min_base_damage, max_base_damage, base_speed,
                 armor, day_vision, night_vision, bio, abilities]
 
-            f.write(';'.join(fields_data) + '\n')
+            f.write('|'.join(fields_data) + '\n')
             
             # Don't abuse, pause between heroes
             # It will take more time, but it helps to prevent being blocked
