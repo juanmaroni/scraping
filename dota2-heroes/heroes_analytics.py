@@ -6,7 +6,7 @@ from scrap_heroes import csv_filepath
 
 Df = pd.DataFrame
 
-def examine_heroes_from_csv():
+def analyze_heroes_from_csv():
     heroes_file: Df = pd.read_csv(csv_filepath, delimiter = '|', lineterminator = '\n', index_col='name')
     
     # Dropping columns I won't be using
@@ -16,8 +16,6 @@ def examine_heroes_from_csv():
     print('Top 5 rows:')
     print(new_heroes_file.head())
     print()
-
-    # Let's ask some questions about the data
 
     # How many meelee and ranged heroes exist?
     total_melee: int = len(new_heroes_file[new_heroes_file['attack_type'] == 'Melee'])
@@ -37,4 +35,4 @@ def examine_heroes_from_csv():
     plt.show()
 
 if __name__ == "__main__":
-    examine_heroes_from_csv()
+    analyze_heroes_from_csv()
