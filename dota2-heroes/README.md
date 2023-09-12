@@ -8,5 +8,4 @@ Scraping Heroes main page. Extracts URL for each Hero page and then scraps those
 Asking some questions about the Heroes and displaying data on Jupyter notebook.
 
 ## Warning
-Valve finally redesigned the Dota webpage... so the script to scrap doesn't work anymore.
-I will consider to update it soon(TM).
+Valve finally redesigned the Dota webpage... so the script to scrap doesn't work anymore. Thanks, Volvo.
